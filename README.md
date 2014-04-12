@@ -11,6 +11,8 @@ $ npm install gpagespeed
 
 ##Test##
 
+Make sure you have [Mocha](http://visionmedia.github.io/mocha/) installed globally or just do an npm install in gpagespeed.
+
 Update test/test.js with you API key
 
 ```
