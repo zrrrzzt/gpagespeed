@@ -1,7 +1,7 @@
 var pagespeed = require('../index')
   , assert = require('assert')
-  , url = 'http://www.google.com'
-  , key = 'insert-your-key-here';
+  , url = 'http://insert.your.url'
+  , key = 'insert-your-API-key';
 
 describe('PageSpeed', function(){
 
