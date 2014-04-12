@@ -32,3 +32,6 @@ pagespeed(opts, function(err, data){
   console.log(data);
 });
 ```
+
+##License##
+MIT
