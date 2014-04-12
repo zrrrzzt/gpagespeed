@@ -21,6 +21,12 @@ $ npm test
 
 ##Usage##
 
+Pass an object with properties.
+
+**url** and **key** are required, all other are optional.
+
+You can see a list of all alternatives on the page for [Google PageSpeed standard query parameters](https://developers.google.com/speed/docs/insights/v1/getting_started#st_params).
+
 ```javascript
 var pagespeed = require('gpagespeed')
   , opts = {
@@ -34,6 +40,8 @@ pagespeed(opts, function(err, data){
   console.log(data);
 });
 ```
+
+
 
 ##License##
 MIT
