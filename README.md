@@ -41,7 +41,5 @@ pagespeed(opts, function(err, data){
 });
 ```
 
-
-
 ##License##
 MIT
