@@ -1,0 +1,23 @@
+{
+  "name": "gpagespeed",
+  "description": "Analyze a webpage with Google PageSpeed",
+  "version": "0.0.1",
+  "author": "Geir Gåsodden <geir.gasodden@pythonia.no>",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha test/test.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "http://github.com/zrrrzzt/gpagespeed.git"
+  },
+  "bugs": {
+    "url": "http://github.com/zrrrzzt/gpagespeed/issues"
+  },
+  "dependencies": {
+    "request": "^2.34.0"
+  },
+  "devDependencies": {
+    "mocha": "^1.18.2"
+  }
+}
