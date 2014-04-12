@@ -1,7 +1,7 @@
 {
   "name": "gpagespeed",
   "description": "Analyze a webpage with Google PageSpeed",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "author": "Geir Gåsodden <geir.gasodden@pythonia.no>",
   "main": "index.js",
   "scripts": {
