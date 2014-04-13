@@ -13,6 +13,6 @@ module.exports = function(opts, callback){
     if(error){
       return callback(error, null);
     }
-    return callback(null, JSON.parse(body.toString()));
+    return callback(null, body.toString());
   });
 };
