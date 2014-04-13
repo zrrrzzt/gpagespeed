@@ -2,7 +2,9 @@
 
 Node.js module for analyzing a webpage with [Google PageSpeed Insights](https://developers.google.com/speed/docs/insights/v1/getting_started).
 
-To use this you must Acquire an API key from [Google Developers Console](https://console.developers.google.com/)
+To use this you must Acquire an API key from [Google Developers Console](https://console.developers.google.com/).
+
+The module outputs the result as string.
 
 ##Installation##
 ```
