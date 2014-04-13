@@ -29,8 +29,9 @@ describe('PageSpeed', function(){
     var opts = {key:key, url:url};
     pagespeed(opts, function(err, data){
       if(err) throw err;
-      assert.equal('pagespeedonline#result', data.kind);
-      assert.equal(200, data.responseCode);
+      var res = JSON.parse(data);
+      assert.equal('pagespeedonline#result', res.kind);
+      assert.equal(200, res.responseCode);
       done();
     });
   });
