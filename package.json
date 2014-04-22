@@ -2,11 +2,24 @@
   "name": "gpagespeed",
   "description": "Analyze a webpage with Google PageSpeed",
   "version": "0.0.4",
-  "author": "Geir Gåsodden <geir.gasodden@pythonia.no>",
+  "author": {
+    "name": "Geir Gåsodden",
+    "email": "geir.gasodden@pythonia.no"
+  },
   "main": "index.js",
+  "bin": {
+    "gpagespeed": "cli.js"
+  },
+  "engines": {
+    "node": ">=0.10.0"
+  },
   "scripts": {
     "test": "mocha test/test.js --timeout 10s"
   },
+  "files": [
+    "index.js",
+    "cli.js"
+  ],
   "repository": {
     "type": "git",
     "url": "http://github.com/zrrrzzt/gpagespeed.git"
