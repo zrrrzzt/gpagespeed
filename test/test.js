@@ -1,6 +1,6 @@
 var pagespeed = require('../index')
   , assert = require('assert')
-  , url = 'http://insert.your.url'
+  , url = 'http://www.google.com'
   , key = 'insert-your-API-key';
 
 describe('PageSpeed', function(){
@@ -26,7 +26,7 @@ describe('PageSpeed', function(){
   });
 
   it('Should return data as JSON', function(done){
-    var opts = {key:key, url:url};
+    var opts = {nokey:true, url:url};
     pagespeed(opts, function(err, data){
       if(err) throw err;
       var res = JSON.parse(data);
