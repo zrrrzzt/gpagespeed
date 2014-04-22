@@ -28,7 +28,8 @@
     "url": "http://github.com/zrrrzzt/gpagespeed/issues"
   },
   "dependencies": {
-    "request": "^2.34.0"
+    "request": "^2.34.0",
+    "minimist": "0.0.8"
   },
   "devDependencies": {
     "mocha": "^1.18.2"
