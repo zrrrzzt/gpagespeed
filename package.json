@@ -8,7 +8,7 @@
   },
   "main": "index.js",
   "bin": {
-    "gpagespeed": "cli.js"
+    "pagespeed": "cli.js"
   },
   "engines": {
     "node": ">=0.10.0"
