@@ -62,6 +62,10 @@ if(argv.strategy){
   opts.strategy = argv.strategy;
 }
 
+if(argv.nokey){
+  opts.nokey = argv.nokey;
+}
+
 pagespeed(opts, function(err, data){
   if(err){
     console.log(err);
