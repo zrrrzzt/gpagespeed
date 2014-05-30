@@ -3,7 +3,7 @@ var pagespeed = require('../index')
   , url = 'http://www.google.com'
   ;
 
-describe('PageSpeed', function(){
+describe('gpagespeed - outputs', function(){
 
   it('Should return data as JSON', function(done){
     var opts = {nokey:true, url:url};
