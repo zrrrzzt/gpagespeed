@@ -29,7 +29,11 @@ if (process.argv.indexOf('-v') !== -1 || process.argv.indexOf('--version') !== -
   return;
 }
 
-if(!argv.url || (!argv.key && !argv.nokey)){
+if (query.indexOf('http') !== -1) {
+  opts.url = argv._[0];
+}
+
+if(!opts.url || (!argv.key && !argv.nokey)){
   printHelp();
   return;
 }
