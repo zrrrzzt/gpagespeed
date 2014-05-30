@@ -15,16 +15,6 @@ describe('PageSpeed', function(){
     });
   });
 
-  it('Should throw error if url is not supplied', function(done){
-    var opts = {'key':key};
-    pagespeed(opts, function(err, data){
-      assert.throws(function(){
-        if(err) throw err;
-      });
-      done();
-    });
-  });
-
   it('Should return data as JSON', function(done){
     var opts = {nokey:true, url:url};
     pagespeed(opts, function(err, data){
