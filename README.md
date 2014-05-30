@@ -50,13 +50,13 @@ pagespeed(opts, function(err, data){
 ##Usage - CLI
 
 ```
-$ gpagespeed --url=<url> --key=<key>
+$ gpagespeed <url> --key=<key>
 ```
 
 Optional params. You can see a list of all alternatives on the page for [Google PageSpeed standard query parameters](https://developers.google.com/speed/docs/insights/v1/getting_started#st_params).
 
 ```
-$ gpagespeed --url=<url> --key=<key> --callback=<callback> --prettyprint=<true> --userIp=<userIp> --locale=<locale> --strategy=<desktop|mobile>
+$ gpagespeed <url> --key=<key> --callback=<callback> --prettyprint=<true> --userIp=<userIp> --locale=<locale> --strategy=<desktop|mobile>
 ```
 
 ##License
