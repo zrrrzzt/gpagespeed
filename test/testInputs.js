@@ -29,7 +29,6 @@ describe('gpagespeed - inputs', function(){
 
   });
 
-/*
   it('Should throw if url is not valid', function(done){
 
     var opts = {
@@ -53,6 +52,7 @@ describe('gpagespeed - inputs', function(){
 
   });
 
+/*
   it('Should throw if key is not supplied', function(done){
 
     var opts = {
