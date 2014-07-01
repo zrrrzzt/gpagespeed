@@ -6,7 +6,7 @@ To use this you must Acquire an API key from [Google Developers Console](https:/
 
 The module outputs the result as a string.
 
-To get a nice formatted report try [psi](https://github.com/addyosmani/psi)
+If you want a nice formatted report try [psi](https://github.com/addyosmani/psi) by Addy Osmani.
 
 ##Installation
 ```
