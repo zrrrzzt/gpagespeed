@@ -4,7 +4,9 @@ Node.js module/CLI app for analyzing a webpage with [Google PageSpeed Insights](
 
 To use this you must Acquire an API key from [Google Developers Console](https://console.developers.google.com/).
 
-The module outputs the result as string.
+The module outputs the result as a string.
+
+To get a nice formatted report try [psi](https://github.com/addyosmani/psi)
 
 ##Installation
 ```
