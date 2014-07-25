@@ -2,7 +2,7 @@
 
 Node.js module/CLI app for analyzing a webpage with [Google PageSpeed Insights](https://developers.google.com/speed/docs/insights/v1/getting_started) using the [google-api-nodejs-client](https://github.com/google/google-api-nodejs-client).
 
-To use this you must Acquire an API key from [Google Developers Console](https://console.developers.google.com/).
+You must acquire an API key from [Google Developers Console](https://console.developers.google.com/).
 
 If you want a nice formatted report try [psi](https://github.com/addyosmani/psi) by Addy Osmani.
 
