@@ -21,6 +21,10 @@
     "index.js",
     "cli.js"
   ],
+  "keywords": [
+    "pagespeed",
+    "insights"
+  ],
   "repository": {
     "type": "git",
     "url": "http://github.com/zrrrzzt/gpagespeed.git"
