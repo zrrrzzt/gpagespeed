@@ -1,6 +1,6 @@
-var request = require('request')
+var google = require('googleapis')
+  , pagespeedonline = google.pagespeedonline('v1')
   , validUrl = require('valid-url')
-  , pagespeedUrl = 'https://www.googleapis.com/pagespeedonline/v1/runPagespeed'
   ;
 
 module.exports = function(opts, callback){
@@ -17,10 +17,10 @@ module.exports = function(opts, callback){
     return callback(new Error('Invalid url'), null);
   }
 
-  request(pagespeedUrl,{qs:opts}, function(error, res, body){
+  pagespeedonline.pagespeedapi.runpagespeed(opts, function(error, req){
     if(error){
       return callback(error, null);
     }
-    return callback(null, body.toString());
+    return callback(null, req);
   });
 };
