@@ -30,7 +30,6 @@
   },
   "dependencies": {
     "minimist": "^0.2.0",
-    "request": "^2.36.0",
     "valid-url": "^1.0.9"
   },
   "devDependencies": {
