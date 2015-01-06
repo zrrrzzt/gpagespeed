@@ -17,6 +17,8 @@ function printHelp() {
   console.log('Optional, supply other arguments.');
   console.log('See https://developers.google.com/speed/docs/insights/v1/getting_started for description');
   console.log('  $ gpagespeed <url> --key=<key> --callback=<callback> --prettyprint=<true> --userIp=<userIp> --locale=<locale> --strategy=<desktop|mobile>');
+  console.log('You can also use request instead of googleapis and pick another version of the api');
+  console.log('  $ gpagespeed <url> --key=<key> --userequest=true --apiversion=<versionstring>');
 }
 
 if (!query || process.argv.indexOf('-h') !== -1 || process.argv.indexOf('--help') !== -1) {
