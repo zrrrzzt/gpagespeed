@@ -20,9 +20,9 @@ module.exports = function(opts, callback){
     return callback(new Error('Invalid url'), null);
   }
 
-  apiVersion = opts.version || 'v1';
+  apiVersion = opts.apiversion || 'v1';
 
-  if(opts.useRequest){
+  if(opts.userequest){
     pagespeedUrl = 'https://www.googleapis.com/pagespeedonline/' + apiVersion + '/runPagespeed';
     request(pagespeedUrl, {qs:opts}, function(error, response, body){
       if(error){

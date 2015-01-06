@@ -70,6 +70,14 @@ if(argv.nokey){
   opts.nokey = argv.nokey;
 }
 
+if(argv.userequest){
+  opts.userequest = argv.userequest;
+}
+
+if(argv.apiversion){
+  opts.apiversion = argv.apiversion;
+}
+
 pagespeed(opts, function(err, data){
   if(err){
     console.log(err);
