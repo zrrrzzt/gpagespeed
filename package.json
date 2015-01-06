@@ -34,7 +34,7 @@
   },
   "dependencies": {
     "googleapis": "^1.0.22",
-    "minimist": "^0.2.0",
+    "minimist": "^1.1.0",
     "valid-url": "^1.0.9"
   },
   "devDependencies": {
