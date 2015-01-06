@@ -1,6 +1,9 @@
 var google = require('googleapis')
-  , pagespeedonline = google.pagespeedonline('v1')
+  , request = require('request')
   , validUrl = require('valid-url')
+  , apiVersion
+  , pagespeedUrl
+  , pagespeedonline
   ;
 
 module.exports = function(opts, callback){
@@ -17,10 +20,24 @@ module.exports = function(opts, callback){
     return callback(new Error('Invalid url'), null);
   }
 
-  pagespeedonline.pagespeedapi.runpagespeed(opts, function(error, req){
-    if(error){
-      return callback(error, null);
-    }
-    return callback(null, req);
-  });
+  apiVersion = opts.version || 'v1';
+
+  if(opts.useRequest){
+    pagespeedUrl = 'https://www.googleapis.com/pagespeedonline/' + apiVersion + '/runPagespeed';
+    request(pagespeedUrl, {qs:opts}, function(error, response, body){
+      if(error){
+        return callback(error, null);
+      } else {
+        return callback(null, body.toString());
+      }
+    })
+  } else {
+    pagespeedonline = google.pagespeedonline(apiVersion);
+    pagespeedonline.pagespeedapi.runpagespeed(opts, function(error, req){
+      if(error){
+        return callback(error, null);
+      }
+      return callback(null, req);
+    });
+  }
 };
