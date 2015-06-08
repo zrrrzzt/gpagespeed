@@ -47,6 +47,18 @@ if (argv.key) {
   opts.key = argv.key;
 }
 
+if (argv.callback) {
+  opts.callback = argv.callback;
+}
+
+if (argv.prettyprint) {
+  opts.prettyprint = argv.prettyprint;
+}
+
+if (argv.userIp) {
+  opts.userIp = argv.userIp;
+}
+
 if (argv.filter_third_party_resources) {
   opts.filter_third_party_resources = true;
 }
