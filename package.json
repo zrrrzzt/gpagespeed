@@ -37,6 +37,7 @@
     "valid-url": "^1.0.9"
   },
   "devDependencies": {
+    "jscs": "^1.13.1",
     "mocha": "^2.2.5"
   }
 }
