@@ -16,6 +16,7 @@
     "node": ">=0.10.0"
   },
   "scripts": {
+    "setup": "npm install && node setup.js",
     "test": "mocha --reporter spec test/*.js --timeout 10s"
   },
   "files": [
