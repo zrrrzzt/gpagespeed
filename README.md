@@ -23,7 +23,7 @@ $ npm install gpagespeed -g
 
 From GitHub
 
-##Usage - Module
+## Usage - Module
 
 Pass an object with properties.
 
@@ -68,7 +68,7 @@ pagespeed(options, function(error, data) {
 ```
 
 
-##Usage - CLI
+## Usage - CLI
 
 ```
 $ gpagespeed <url> --key=<key>
@@ -87,5 +87,5 @@ $ gpagespeed <url> --key=<key> --useweb=true --apiversion=<versionstring>
 ```
 
 
-##License
+## License
 MIT
