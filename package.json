@@ -34,7 +34,7 @@
     "url": "http://github.com/zrrrzzt/gpagespeed/issues"
   },
   "dependencies": {
-    "googleapis": "^1.0.22",
+    "googleapis": "^2.0.5",
     "minimist": "^1.1.0",
     "request": "^2.51.0",
     "valid-url": "^1.0.9"
