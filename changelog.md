@@ -8,3 +8,4 @@ Added support for using request instead of googleapis
 Added missing license
 Switches from request to plain https
 Sets v2 as default apiVersion
+Updates dependencies

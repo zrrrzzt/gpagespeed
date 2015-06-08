@@ -15,7 +15,7 @@ function printHelp() {
   console.log('');
   console.log('Optional, supply other arguments.');
   console.log('See https://developers.google.com/speed/docs/insights/v2/getting-started');
-  console.log('  $ gpagespeed <url> --key=<key> --callback=<callback> --prettyprint=<true> --userIp=<userIp> --locale=<locale> --strategy=<desktop|mobile>');
+  console.log('  $ gpagespeed <url> --key=<key> filter_third_party_resources=<boolean> --locale=<locale> --rule=<rule> --screenshot=<boolean> --strategy=<desktop|mobile>');
   console.log('You can also use https instead of googleapis and pick another version of the api');
   console.log('  $ gpagespeed <url> --key=<key> --useweb=true --apiversion=<versionstring>');
 }
@@ -47,16 +47,16 @@ if (argv.key) {
   opts.key = argv.key;
 }
 
-if (argv.callback) {
-  opts.callback = argv.callback;
+if (argv.filter_third_party_resources) {
+  opts.filter_third_party_resources = true;
 }
 
-if (argv.prettyprint) {
-  opts.prettyprint = argv.prettyprint;
+if (argv.rule) {
+  opts.rule = argv.rule;
 }
 
-if (argv.userIp) {
-  opts.userIp = argv.userIp;
+if (argv.screenshot) {
+  opts.screenshot = true;
 }
 
 if (argv.locale) {
