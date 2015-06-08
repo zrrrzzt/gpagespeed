@@ -21,10 +21,9 @@ module.exports = function(options, callback) {
 
   apiVersion = options.apiversion || 'v2';
 
-  if (options.userequest) {
+  if (options.useweb) {
     pagespeedUrl = 'https://www.googleapis.com/pagespeedonline/' + apiVersion + '/runPagespeed';
     getResults({apiUrl:pagespeedUrl, qs:options}, function(error, data) {
-      console.log('using https');
       if (error) {
         return callback(error, null);
       } else {
