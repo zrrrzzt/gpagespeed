@@ -2,6 +2,7 @@
   "name": "gpagespeed",
   "description": "Analyze a webpage with Google PageSpeed",
   "version": "1.0.0",
+  "license": "MIT",
   "author": {
     "name": "Geir Gåsodden",
     "email": "geir.gasodden@pythonia.no",
