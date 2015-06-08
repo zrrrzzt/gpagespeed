@@ -1,5 +1,5 @@
 var google = require('googleapis');
-var request = require('request');
+var getResults = require('./lib/getResult');
 var validUrl = require('valid-url');
 var apiVersion;
 var pagespeedUrl;
@@ -23,13 +23,14 @@ module.exports = function(options, callback) {
 
   if (options.userequest) {
     pagespeedUrl = 'https://www.googleapis.com/pagespeedonline/' + apiVersion + '/runPagespeed';
-    request(pagespeedUrl, {qs:options}, function(error, response, body) {
+    getResults({apiUrl:pagespeedUrl, qs:options}, function(error, data) {
+      console.log('using https');
       if (error) {
         return callback(error, null);
       } else {
-        return callback(null, body.toString());
+        return callback(null, data);
       }
-    })
+    });
   } else {
     pagespeedonline = google.pagespeedonline(apiVersion);
     pagespeedonline.pagespeedapi.runpagespeed(options, function(error, req) {

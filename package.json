@@ -33,7 +33,6 @@
   "dependencies": {
     "googleapis": "^2.0.5",
     "minimist": "^1.1.1",
-    "request": "^2.57.0",
     "valid-url": "^1.0.9"
   },
   "devDependencies": {
