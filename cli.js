@@ -87,6 +87,10 @@ if (argv.userequest) {
   opts.userequest = argv.userequest;
 }
 
+if (argv.useweb) {
+  opts.useweb = argv.useweb;
+}
+
 if (argv.apiversion) {
   opts.apiversion = argv.apiversion;
 }
@@ -95,6 +99,6 @@ pagespeed(opts, function(err, data) {
   if (err) {
     console.log(err);
   } else {
-    console.log(data);
+    console.log(JSON.stringify(data));
   }
 });
