@@ -9,3 +9,9 @@ Added missing license
 Switches from request to plain https
 Sets v2 as default apiVersion
 Updates dependencies
+
+##4.0.0
+Adds Promise interface
+Node 6.9.4
+Removes CLI
+Switches from Mocha to Tap

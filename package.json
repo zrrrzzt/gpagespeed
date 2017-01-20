@@ -1,7 +1,7 @@
 {
   "name": "gpagespeed",
   "description": "Analyze a webpage with Google PageSpeed",
-  "version": "3.0.0",
+  "version": "4.0.0",
   "license": "MIT",
   "author": {
     "name": "Geir Gåsodden",
@@ -13,11 +13,15 @@
     "gpagespeed": "cli.js"
   },
   "engines": {
-    "node": ">=0.10.0"
+    "node": ">=6.9.4"
   },
   "scripts": {
-    "setup": "npm install && node setup.js",
-    "test": "mocha --reporter spec test/*.js --timeout 10s"
+    "test": "standard && nsp check && tap --reporter=spec test/**/*.js",
+    "test-offline": "standard && tap --reporter=spec test/**/*.js",
+    "coverage": "tap test/**/*.js --coverage",
+    "coveralls": "tap --cov --coverage-report=lcov test/**/*.js && cat coverage/lcov.info | coveralls",
+    "setup": "npm install",
+    "standard-fix": "standard --fix"
   },
   "keywords": [
     "pagespeed",
@@ -31,12 +35,14 @@
     "url": "http://github.com/zrrrzzt/gpagespeed/issues"
   },
   "dependencies": {
-    "googleapis": "^16.1.0",
-    "minimist": "^1.1.1",
-    "valid-url": "^1.0.9"
+    "googleapis": "16.1.0",
+    "minimist": "1.2.0",
+    "valid-url": "1.0.9"
   },
   "devDependencies": {
-    "jscs": "^3.0.7",
-    "mocha": "^3.1.2"
+    "coveralls": "2.11.15",
+    "nsp": "2.6.2",
+    "standard": "8.6.0",
+    "tap": "9.0.3"
   }
 }

@@ -1,42 +1,67 @@
-var google = require('googleapis');
-var getResults = require('./lib/getResult');
-var validUrl = require('valid-url');
-var apiVersion;
-var pagespeedUrl;
-var pagespeedonline;
+'use strict'
 
-module.exports = function(options, callback) {
+const google = require('googleapis')
+const validUrl = require('valid-url')
+const getResults = require('./lib/get-result')
 
-  if (!options.key && !options.nokey) {
-    return callback(new Error('Missing required param: key'), null);
-  }
-
-  if (!options.url) {
-    return callback(new Error('Missing required param: url'), null);
-  }
-
-  if (options.url && !validUrl.isWebUri(options.url)) {
-    return callback(new Error('Invalid url'), null);
-  }
-
-  apiVersion = options.apiversion || 'v2';
-
-  if (options.useweb) {
-    pagespeedUrl = 'https://www.googleapis.com/pagespeedonline/' + apiVersion + '/runPagespeed';
-    getResults({apiUrl:pagespeedUrl, qs:options}, function(error, data) {
-      if (error) {
-        return callback(error, null);
-      } else {
-        return callback(null, data);
+module.exports = (options, callback) => {
+  return new Promise((resolve, reject) => {
+    if (!options.key && !options.nokey) {
+      const error = new Error('Missing required param: key')
+      if (callback) {
+        return callback(error, null)
       }
-    });
-  } else {
-    pagespeedonline = google.pagespeedonline(apiVersion);
-    pagespeedonline.pagespeedapi.runpagespeed(options, function(error, req) {
-      if (error) {
-        return callback(error, null);
+      reject(error)
+    }
+
+    if (!options.url) {
+      const error = new Error('Missing required param: url')
+      if (callback) {
+        return callback(error, null)
       }
-      return callback(null, req);
-    });
-  }
-};
+      reject(error)
+    }
+
+    if (options.url && !validUrl.isWebUri(options.url)) {
+      const error = new Error('Invalid url')
+      if (callback) {
+        return callback(error, null)
+      }
+      reject(error)
+    }
+
+    const apiVersion = options.apiversion || 'v2'
+
+    if (options.useweb) {
+      const pagespeedUrl = `https://www.googleapis.com/pagespeedonline/${apiVersion}/runPagespeed`
+      getResults({apiUrl: pagespeedUrl, qs: options}, (error, data) => {
+        if (error) {
+          if (callback) {
+            return callback(error, null)
+          }
+          reject(error)
+        } else {
+          if (callback) {
+            return callback(null, data)
+          }
+          resolve(data)
+        }
+      })
+    } else {
+      const pagespeedonline = google.pagespeedonline(apiVersion)
+      pagespeedonline.pagespeedapi.runpagespeed(options, (error, req) => {
+        if (error) {
+          if (callback) {
+            return callback(error, null)
+          }
+          reject(error)
+        } else {
+          if (callback) {
+            return callback(null, req)
+          }
+          resolve(req)
+        }
+      })
+    }
+  })
+}

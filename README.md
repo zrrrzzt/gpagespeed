@@ -1,39 +1,22 @@
 [![Build Status](https://travis-ci.org/zrrrzzt/gpagespeed.svg?branch=master)](https://travis-ci.org/zrrrzzt/gpagespeed)
+[![js-standard-style](https://img.shields.io/badge/code%20style-standard-brightgreen.svg?style=flat)](https://github.com/feross/standard)
 # gpagespeed
 
-Node.js module/CLI app for analyzing a webpage with [Google PageSpeed Insights](https://developers.google.com/speed/pagespeed/insights/).
+Node.js module for analyzing a webpage with [Google PageSpeed Insights](https://developers.google.com/speed/pagespeed/insights/).
 
 You must acquire an API key from [Google Developers Console](https://console.developers.google.com/).
 
-If you want a nice formatted report try [psi](https://github.com/addyosmani/psi) by Addy Osmani.
+Supports promises and callback interface.
 
 ## Installation
 
 From npm
 
-```sh
-$ npm install gpagespeed
+```bash
+$ npm i gpagespeed --save
 ```
 
-or globally for the CLI app
-
-```sh
-$ npm install gpagespeed -g
-```
-
-From GitHub
-
-```sh
-$ git clone git@github.com:zrrrzzt/gpagespeed.git
-```
-
-Run setup
-
-```sh
-$ npm run setup
-```
-
-## Usage - Module
+## Usage
 
 Pass an object with properties.
 
@@ -41,96 +24,111 @@ Pass an object with properties.
 
 You can see a list of all alternatives on the page for [Google PageSpeed standard query parameters](https://developers.google.com/speed/docs/insights/v2/reference/pagespeedapi/runpagespeed).
 
-```javascript
-var pagespeed = require('gpagespeed');
-var options = {
+### Promises
+
+```JavaScript
+const pagespeed = require('gpagespeed')
+const options = {
   url: 'http://url-to-check',
   key: 'insert-your-key'
-};
+}
 
-pagespeed(options, function(error, data) {
-  if (error) {
-    console.error(error);
-  } else {
-    console.log(data);
-  }
-});
+pagespeed(options)
+  .then((data) => {
+    console.log(data)
+  })
+  .catch((error) => {
+    console.error(error)
+  })
 ```
+
+### Callback
+
+```JavaScript
+const pagespeed = require('gpagespeed')
+const options = {
+  url: 'http://url-to-check',
+  key: 'insert-your-key'
+}
+
+pagespeed(options, (error, data) => {
+  if (error) {
+    console.error(error)
+  } else {
+    console.log(data)
+  }
+})
+```
+
+## Alternative api
 
 In addition you can choose to use https instead of googleapis and another version of the PageSpeed api (defaults to v2).
 
-```javascript
-var pagespeed = require('gpagespeed')
-  , options = {
-    url: 'http://url-to-check',
-    key: 'insert-your-key',
-    useweb: true,
-    apiversion: 'v3beta1'
-  };
+### Promises
+```JavaScript
+const pagespeed = require('gpagespeed')
+const options = {
+  url: 'http://url-to-check',
+  key: 'insert-your-key',
+  useweb: true,
+  apiversion: 'v3beta1'
+}
 
-pagespeed(options, function(error, data) {
+pagespeed(options)
+  .then((data) => {
+    console.log(data)
+  })
+  .catch((error) => {
+    console.error(error)
+  })
+```
+
+### Callback
+```JavaScript
+const pagespeed = require('gpagespeed')
+const options = {
+  url: 'http://url-to-check',
+  key: 'insert-your-key',
+  useweb: true,
+  apiversion: 'v3beta1'
+}
+
+pagespeed(options, (error, data) => {
   if (error) {
-    console.error(error);
+    console.error(error)
   } else {
-    console.log(data);
+    console.log(data)
   }
-});
+})
 ```
 
-## Usage - CLI
+## Returns
 
-```sh
-$ gpagespeed <url> --key=<key>
-```
-
-Optional params for result. You can see a list of all alternatives on the page for [Google PageSpeed standard query parameters](https://developers.google.com/speed/docs/insights/v1/getting_started#st_params).
-
-```sh
-$ gpagespeed <url> --key=<key> filter_third_party_resources=<boolean> --locale=<locale> --rule=<rule> --screenshot=<boolean> --strategy=<desktop|mobile>
-```
-
-In addition you can use flags to select another version of the api (defaults to v2) and to use request instead of googlapis.
-
-```sh
-$ gpagespeed <url> --key=<key> --useweb=true --apiversion=<versionstring>
-```
-
-To use the free tier of Googles PageSpeed Insight you kan apply a nokey argument. This is okay for testing but an API-key is recommended.
-
-```sh
-$ gpagespeed <url> --nokey=true
-```
-
-To prettyprint the result I'll recommend [json](https://www.npmjs.com/package/json)
-
-```sh
-$ gpagespeed http://www.telemark.no --nokey=true --useweb=true --apiversion=v3beta1 | json
-```
-
-This will return
-
-```javascript
+```JavaScript
 {
+  "captchaResult": "CAPTCHA_NOT_NEEDED",
   "kind": "pagespeedonline#result",
-  "id": "http://www.telemark.no/",
+  "id": "https://www.npmjs.com/",
   "responseCode": 200,
-  "title": "Telemark fylkeskommune",
+  "title": "npm",
   "ruleGroups": {
     "SPEED": {
-      "score": 66
+      "score": 70
     }
   },
   "pageStats": {
-    "numberResources": 23,
-    "numberHosts": 5,
-    "totalRequestBytes": "3512",
-    "numberStaticResources": 19,
-    "htmlResponseBytes": "32731",
-    "cssResponseBytes": "63831",
-    "imageResponseBytes": "1033401",
-    "javascriptResponseBytes": "421718",
-    "numberJsResources": 5,
-    "numberCssResources": 1
+    "numberResources": 50,
+    "numberHosts": 15,
+    "totalRequestBytes": "4652",
+    "numberStaticResources": 31,
+    "htmlResponseBytes": "570573",
+    "overTheWireResponeBytes": "2244324",
+    "cssResponseBytes": "316271",
+    "imageResponseBytes": "557960",
+    "javascriptResponseBytes": "550906",
+    "otherResponseBytes": "129213",
+    "numberJsResources": 8,
+    "numberCssResources": 2
   },
   "formattedResults": {
     "locale": "en_US",
@@ -171,37 +169,441 @@ This will return
       },
       "LeverageBrowserCaching": {
         "localizedRuleName": "Leverage browser caching",
-        "ruleImpact": 0,
+        "ruleImpact": 11.361140873015875,
         "groups": [
           "SPEED"
         ],
         "summary": {
-          "format": "You have enabled browser caching. Learn more about {{BEGIN_LINK}}browser caching recommendations{{END_LINK}}.",
-          "args": [
-            {
-              "type": "HYPERLINK",
-              "key": "LINK",
-              "value": "https://developers.google.com/speed/docs/insights/LeverageBrowserCaching"
-            }
-          ]
-        }
+          "format": "Setting an expiry date or a maximum age in the HTTP headers for static resources instructs the browser to load previously downloaded resources from local disk rather than over the network."
+        },
+        "urlBlocks": [
+          {
+            "header": {
+              "format": "{{BEGIN_LINK}}Leverage browser caching{{END_LINK}} for the following cacheable resources:",
+              "args": [
+                {
+                  "type": "HYPERLINK",
+                  "key": "LINK",
+                  "value": "https://developers.google.com/speed/docs/insights/LeverageBrowserCaching"
+                }
+              ]
+            },
+            "urls": [
+              {
+                "result": {
+                  "format": "{{URL}} (expiration not specified)",
+                  "args": [
+                    {
+                      "type": "URL",
+                      "key": "URL",
+                      "value": "https://partners.npmjs.com/hiring"
+                    }
+                  ]
+                }
+              },
+              {
+                "result": {
+                  "format": "{{URL}} ({{LIFETIME}})",
+                  "args": [
+                    {
+                      "type": "URL",
+                      "key": "URL",
+                      "value": "https://cdn.optimizely.com/js/3318080746.js"
+                    },
+                    {
+                      "type": "DURATION",
+                      "key": "LIFETIME",
+                      "value": "2.1 minutes"
+                    }
+                  ]
+                }
+              },
+              {
+                "result": {
+                  "format": "{{URL}} ({{LIFETIME}})",
+                  "args": [
+                    {
+                      "type": "URL",
+                      "key": "URL",
+                      "value": "https://raw.githubusercontent.com/gulpjs/artwork/master/gulp-2x.png"
+                    },
+                    {
+                      "type": "DURATION",
+                      "key": "LIFETIME",
+                      "value": "5 minutes"
+                    }
+                  ]
+                }
+              },
+              {
+                "result": {
+                  "format": "{{URL}} ({{LIFETIME}})",
+                  "args": [
+                    {
+                      "type": "URL",
+                      "key": "URL",
+                      "value": "https://www.npmjs.com/static/css/@npmcorp/pui-css-typography/OpenSans-Bold-webfont.woff"
+                    },
+                    {
+                      "type": "DURATION",
+                      "key": "LIFETIME",
+                      "value": "10 minutes"
+                    }
+                  ]
+                }
+              },
+              {
+                "result": {
+                  "format": "{{URL}} ({{LIFETIME}})",
+                  "args": [
+                    {
+                      "type": "URL",
+                      "key": "URL",
+                      "value": "https://www.npmjs.com/static/css/@npmcorp/pui-css-typography/OpenSans-ExtraBold-webfont.woff"
+                    },
+                    {
+                      "type": "DURATION",
+                      "key": "LIFETIME",
+                      "value": "10 minutes"
+                    }
+                  ]
+                }
+              },
+              {
+                "result": {
+                  "format": "{{URL}} ({{LIFETIME}})",
+                  "args": [
+                    {
+                      "type": "URL",
+                      "key": "URL",
+                      "value": "https://www.npmjs.com/static/css/@npmcorp/pui-css-typography/OpenSans-Light-webfont.woff"
+                    },
+                    {
+                      "type": "DURATION",
+                      "key": "LIFETIME",
+                      "value": "10 minutes"
+                    }
+                  ]
+                }
+              },
+              {
+                "result": {
+                  "format": "{{URL}} ({{LIFETIME}})",
+                  "args": [
+                    {
+                      "type": "URL",
+                      "key": "URL",
+                      "value": "https://www.npmjs.com/static/css/@npmcorp/pui-css-typography/OpenSans-Regular-webfont.woff"
+                    },
+                    {
+                      "type": "DURATION",
+                      "key": "LIFETIME",
+                      "value": "10 minutes"
+                    }
+                  ]
+                }
+              },
+              {
+                "result": {
+                  "format": "{{URL}} ({{LIFETIME}})",
+                  "args": [
+                    {
+                      "type": "URL",
+                      "key": "URL",
+                      "value": "https://www.npmjs.com/static/css/@npmcorp/pui-css-typography/OpenSans-Semibold-webfont.woff"
+                    },
+                    {
+                      "type": "DURATION",
+                      "key": "LIFETIME",
+                      "value": "10 minutes"
+                    }
+                  ]
+                }
+              },
+              {
+                "result": {
+                  "format": "{{URL}} ({{LIFETIME}})",
+                  "args": [
+                    {
+                      "type": "URL",
+                      "key": "URL",
+                      "value": "https://www.npmjs.com/static/css/components.css?last-changed=557628d0dd3d70f924b73f62b93c5859"
+                    },
+                    {
+                      "type": "DURATION",
+                      "key": "LIFETIME",
+                      "value": "10 minutes"
+                    }
+                  ]
+                }
+              },
+              {
+                "result": {
+                  "format": "{{URL}} ({{LIFETIME}})",
+                  "args": [
+                    {
+                      "type": "URL",
+                      "key": "URL",
+                      "value": "https://www.npmjs.com/static/images/avatars/Avatar1.svg"
+                    },
+                    {
+                      "type": "DURATION",
+                      "key": "LIFETIME",
+                      "value": "10 minutes"
+                    }
+                  ]
+                }
+              },
+              {
+                "result": {
+                  "format": "{{URL}} ({{LIFETIME}})",
+                  "args": [
+                    {
+                      "type": "URL",
+                      "key": "URL",
+                      "value": "https://www.npmjs.com/static/images/avatars/Avatar2.svg"
+                    },
+                    {
+                      "type": "DURATION",
+                      "key": "LIFETIME",
+                      "value": "10 minutes"
+                    }
+                  ]
+                }
+              },
+              {
+                "result": {
+                  "format": "{{URL}} ({{LIFETIME}})",
+                  "args": [
+                    {
+                      "type": "URL",
+                      "key": "URL",
+                      "value": "https://www.npmjs.com/static/images/avatars/Avatar4.svg"
+                    },
+                    {
+                      "type": "DURATION",
+                      "key": "LIFETIME",
+                      "value": "10 minutes"
+                    }
+                  ]
+                }
+              },
+              {
+                "result": {
+                  "format": "{{URL}} ({{LIFETIME}})",
+                  "args": [
+                    {
+                      "type": "URL",
+                      "key": "URL",
+                      "value": "https://www.npmjs.com/static/images/binoculars-dot.svg"
+                    },
+                    {
+                      "type": "DURATION",
+                      "key": "LIFETIME",
+                      "value": "10 minutes"
+                    }
+                  ]
+                }
+              },
+              {
+                "result": {
+                  "format": "{{URL}} ({{LIFETIME}})",
+                  "args": [
+                    {
+                      "type": "URL",
+                      "key": "URL",
+                      "value": "https://www.npmjs.com/static/images/collaboration-security.svg"
+                    },
+                    {
+                      "type": "DURATION",
+                      "key": "LIFETIME",
+                      "value": "10 minutes"
+                    }
+                  ]
+                }
+              },
+              {
+                "result": {
+                  "format": "{{URL}} ({{LIFETIME}})",
+                  "args": [
+                    {
+                      "type": "URL",
+                      "key": "URL",
+                      "value": "https://www.npmjs.com/static/images/hero-cityscape.svg"
+                    },
+                    {
+                      "type": "DURATION",
+                      "key": "LIFETIME",
+                      "value": "10 minutes"
+                    }
+                  ]
+                }
+              },
+              {
+                "result": {
+                  "format": "{{URL}} ({{LIFETIME}})",
+                  "args": [
+                    {
+                      "type": "URL",
+                      "key": "URL",
+                      "value": "https://www.npmjs.com/static/images/mountain-dot.svg"
+                    },
+                    {
+                      "type": "DURATION",
+                      "key": "LIFETIME",
+                      "value": "10 minutes"
+                    }
+                  ]
+                }
+              },
+              {
+                "result": {
+                  "format": "{{URL}} ({{LIFETIME}})",
+                  "args": [
+                    {
+                      "type": "URL",
+                      "key": "URL",
+                      "value": "https://www.npmjs.com/static/images/npm-enterprise.svg"
+                    },
+                    {
+                      "type": "DURATION",
+                      "key": "LIFETIME",
+                      "value": "10 minutes"
+                    }
+                  ]
+                }
+              },
+              {
+                "result": {
+                  "format": "{{URL}} ({{LIFETIME}})",
+                  "args": [
+                    {
+                      "type": "URL",
+                      "key": "URL",
+                      "value": "https://www.npmjs.com/static/images/npm-is-BOXES.svg"
+                    },
+                    {
+                      "type": "DURATION",
+                      "key": "LIFETIME",
+                      "value": "10 minutes"
+                    }
+                  ]
+                }
+              },
+              {
+                "result": {
+                  "format": "{{URL}} ({{LIFETIME}})",
+                  "args": [
+                    {
+                      "type": "URL",
+                      "key": "URL",
+                      "value": "https://www.npmjs.com/static/images/rucksack-dot.svg"
+                    },
+                    {
+                      "type": "DURATION",
+                      "key": "LIFETIME",
+                      "value": "10 minutes"
+                    }
+                  ]
+                }
+              },
+              {
+                "result": {
+                  "format": "{{URL}} ({{LIFETIME}})",
+                  "args": [
+                    {
+                      "type": "URL",
+                      "key": "URL",
+                      "value": "https://www.npmjs.com/static/js/componentized.min.js?last-changed=33a73092bc70d0308c9370b146871fef"
+                    },
+                    {
+                      "type": "DURATION",
+                      "key": "LIFETIME",
+                      "value": "10 minutes"
+                    }
+                  ]
+                }
+              },
+              {
+                "result": {
+                  "format": "{{URL}} ({{LIFETIME}})",
+                  "args": [
+                    {
+                      "type": "URL",
+                      "key": "URL",
+                      "value": "https://www.npmjs.com/static/js/vendor.min.js?last-changed=1d4a4436c0b4dcadb967d94da68ac9f5"
+                    },
+                    {
+                      "type": "DURATION",
+                      "key": "LIFETIME",
+                      "value": "10 minutes"
+                    }
+                  ]
+                }
+              },
+              {
+                "result": {
+                  "format": "{{URL}} ({{LIFETIME}})",
+                  "args": [
+                    {
+                      "type": "URL",
+                      "key": "URL",
+                      "value": "https://www.google-analytics.com/plugins/ua/ec.js"
+                    },
+                    {
+                      "type": "DURATION",
+                      "key": "LIFETIME",
+                      "value": "60 minutes"
+                    }
+                  ]
+                }
+              },
+              {
+                "result": {
+                  "format": "{{URL}} ({{LIFETIME}})",
+                  "args": [
+                    {
+                      "type": "URL",
+                      "key": "URL",
+                      "value": "https://www.google-analytics.com/analytics.js"
+                    },
+                    {
+                      "type": "DURATION",
+                      "key": "LIFETIME",
+                      "value": "2 hours"
+                    }
+                  ]
+                }
+              }
+            ]
+          }
+        ]
       },
       "MainResourceServerResponseTime": {
         "localizedRuleName": "Reduce server response time",
-        "ruleImpact": 0,
+        "ruleImpact": 7.5,
         "groups": [
           "SPEED"
         ],
-        "summary": {
-          "format": "Your server responded quickly. Learn more about {{BEGIN_LINK}}server response time optimization{{END_LINK}}.",
-          "args": [
-            {
-              "type": "HYPERLINK",
-              "key": "LINK",
-              "value": "https://developers.google.com/speed/docs/insights/Server"
+        "urlBlocks": [
+          {
+            "header": {
+              "format": "In our test, your server responded in {{RESPONSE_TIME}}. There are many factors that can slow down your server response time. {{BEGIN_LINK}}Please read our recommendations{{END_LINK}} to learn how you can monitor and measure where your server is spending the most time.",
+              "args": [
+                {
+                  "type": "DURATION",
+                  "key": "RESPONSE_TIME",
+                  "value": "0.95 seconds"
+                },
+                {
+                  "type": "HYPERLINK",
+                  "key": "LINK",
+                  "value": "https://developers.google.com/speed/docs/insights/Server"
+                }
+              ]
             }
-          ]
-        }
+          }
+        ]
       },
       "MinifyCss": {
         "localizedRuleName": "Minify CSS",
@@ -222,133 +624,56 @@ This will return
       },
       "MinifyHTML": {
         "localizedRuleName": "Minify HTML",
-        "ruleImpact": 0.057800000000000004,
+        "ruleImpact": 0,
         "groups": [
           "SPEED"
         ],
         "summary": {
-          "format": "Compacting HTML code, including any inline JavaScript and CSS contained in it, can save many bytes of data and speed up download and parse times."
-        },
-        "urlBlocks": [
-          {
-            "header": {
-              "format": "{{BEGIN_LINK}}Minify HTML{{END_LINK}} for the following resources to reduce their size by {{SIZE_IN_BYTES}} ({{PERCENTAGE}} reduction).",
-              "args": [
-                {
-                  "type": "HYPERLINK",
-                  "key": "LINK",
-                  "value": "https://developers.google.com/speed/docs/insights/MinifyResources"
-                },
-                {
-                  "type": "BYTES",
-                  "key": "SIZE_IN_BYTES",
-                  "value": "578B"
-                },
-                {
-                  "type": "PERCENTAGE",
-                  "key": "PERCENTAGE",
-                  "value": "10%"
-                }
-              ]
-            },
-            "urls": [
-              {
-                "result": {
-                  "format": "Minifying {{URL}} could save {{SIZE_IN_BYTES}} ({{PERCENTAGE}} reduction) after compression.",
-                  "args": [
-                    {
-                      "type": "URL",
-                      "key": "URL",
-                      "value": "http://www.telemark.no/"
-                    },
-                    {
-                      "type": "BYTES",
-                      "key": "SIZE_IN_BYTES",
-                      "value": "578B"
-                    },
-                    {
-                      "type": "PERCENTAGE",
-                      "key": "PERCENTAGE",
-                      "value": "10%"
-                    }
-                  ]
-                }
-              }
-            ]
-          }
-        ]
+          "format": "Your HTML is minified. Learn more about {{BEGIN_LINK}}minifying HTML{{END_LINK}}.",
+          "args": [
+            {
+              "type": "HYPERLINK",
+              "key": "LINK",
+              "value": "https://developers.google.com/speed/docs/insights/MinifyResources"
+            }
+          ]
+        }
       },
       "MinifyJavaScript": {
         "localizedRuleName": "Minify JavaScript",
-        "ruleImpact": 0.06870000000000001,
+        "ruleImpact": 0,
         "groups": [
           "SPEED"
         ],
         "summary": {
-          "format": "Compacting JavaScript code can save many bytes of data and speed up downloading, parsing, and execution time."
-        },
-        "urlBlocks": [
-          {
-            "header": {
-              "format": "{{BEGIN_LINK}}Minify JavaScript{{END_LINK}} for the following resources to reduce their size by {{SIZE_IN_BYTES}} ({{PERCENTAGE}} reduction).",
-              "args": [
-                {
-                  "type": "HYPERLINK",
-                  "key": "LINK",
-                  "value": "https://developers.google.com/speed/docs/insights/MinifyResources"
-                },
-                {
-                  "type": "BYTES",
-                  "key": "SIZE_IN_BYTES",
-                  "value": "607B"
-                },
-                {
-                  "type": "PERCENTAGE",
-                  "key": "PERCENTAGE",
-                  "value": "2%"
-                }
-              ]
-            },
-            "urls": [
-              {
-                "result": {
-                  "format": "Minifying {{URL}} could save {{SIZE_IN_BYTES}} ({{PERCENTAGE}} reduction) after compression.",
-                  "args": [
-                    {
-                      "type": "URL",
-                      "key": "URL",
-                      "value": "http://www.telemark.no/js/fa1cc0c.js"
-                    },
-                    {
-                      "type": "BYTES",
-                      "key": "SIZE_IN_BYTES",
-                      "value": "607B"
-                    },
-                    {
-                      "type": "PERCENTAGE",
-                      "key": "PERCENTAGE",
-                      "value": "2%"
-                    }
-                  ]
-                }
-              }
-            ]
-          }
-        ]
+          "format": "Your JavaScript content is minified. Learn more about {{BEGIN_LINK}}minifying JavaScript{{END_LINK}}.",
+          "args": [
+            {
+              "type": "HYPERLINK",
+              "key": "LINK",
+              "value": "https://developers.google.com/speed/docs/insights/MinifyResources"
+            }
+          ]
+        }
       },
       "MinimizeRenderBlockingResources": {
         "localizedRuleName": "Eliminate render-blocking JavaScript and CSS in above-the-fold content",
-        "ruleImpact": 2,
+        "ruleImpact": 10,
         "groups": [
           "SPEED"
         ],
         "summary": {
-          "format": "Your page has {{NUM_CSS}} blocking CSS resources. This causes a delay in rendering your page.",
+          "format": "Your page has {{NUM_SCRIPTS}} blocking script resources and {{NUM_CSS}} blocking CSS resources. This causes a delay in rendering your page.",
           "args": [
             {
               "type": "INT_LITERAL",
-              "key": "NUM_CSS",
+              "key": "NUM_SCRIPTS",
               "value": "1"
+            },
+            {
+              "type": "INT_LITERAL",
+              "key": "NUM_CSS",
+              "value": "2"
             }
           ]
         },
@@ -357,6 +682,32 @@ This will return
             "header": {
               "format": "None of the above-the-fold content on your page could be rendered without waiting for the following resources to load. Try to defer or asynchronously load blocking resources, or inline the critical portions of those resources directly in the HTML."
             }
+          },
+          {
+            "header": {
+              "format": "{{BEGIN_LINK}}Remove render-blocking JavaScript{{END_LINK}}:",
+              "args": [
+                {
+                  "type": "HYPERLINK",
+                  "key": "LINK",
+                  "value": "https://developers.google.com/speed/docs/insights/BlockingJS"
+                }
+              ]
+            },
+            "urls": [
+              {
+                "result": {
+                  "format": "{{URL}}",
+                  "args": [
+                    {
+                      "type": "URL",
+                      "key": "URL",
+                      "value": "https://www.npmjs.com/static/js/componentized.min.js?last-changed=33a73092bc70d0308c9370b146871fef"
+                    }
+                  ]
+                }
+              }
+            ]
           },
           {
             "header": {
@@ -377,7 +728,19 @@ This will return
                     {
                       "type": "URL",
                       "key": "URL",
-                      "value": "http://www.telemark.no/css/20a626b.css"
+                      "value": "https://www.npmjs.com/static/css/components.css?last-changed=557628d0dd3d70f924b73f62b93c5859"
+                    }
+                  ]
+                }
+              },
+              {
+                "result": {
+                  "format": "{{URL}}",
+                  "args": [
+                    {
+                      "type": "URL",
+                      "key": "URL",
+                      "value": "https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700"
                     }
                   ]
                 }
@@ -388,7 +751,7 @@ This will return
       },
       "OptimizeImages": {
         "localizedRuleName": "Optimize images",
-        "ruleImpact": 48.1405,
+        "ruleImpact": 14.8882,
         "groups": [
           "SPEED"
         ],
@@ -408,12 +771,12 @@ This will return
                 {
                   "type": "BYTES",
                   "key": "SIZE_IN_BYTES",
-                  "value": "470.1KiB"
+                  "value": "145.4KiB"
                 },
                 {
                   "type": "PERCENTAGE",
                   "key": "PERCENTAGE",
-                  "value": "91%"
+                  "value": "89%"
                 }
               ]
             },
@@ -425,17 +788,17 @@ This will return
                     {
                       "type": "URL",
                       "key": "URL",
-                      "value": "http://www.telemark.no/var/ezflow_site/storage/images/media/images/kampanje/kampanje-masteroppgave/155957-1-nor-NO/Kampanje-masteroppgave_responsive_09.jpg"
+                      "value": "https://i.cloudup.com/Ka0R3QvWRs.png"
                     },
                     {
                       "type": "BYTES",
                       "key": "SIZE_IN_BYTES",
-                      "value": "287.6KiB"
+                      "value": "85.9KiB"
                     },
                     {
                       "type": "PERCENTAGE",
                       "key": "PERCENTAGE",
-                      "value": "96%"
+                      "value": "95%"
                     }
                   ]
                 }
@@ -447,17 +810,17 @@ This will return
                     {
                       "type": "URL",
                       "key": "URL",
-                      "value": "http://www.telemark.no/var/ezflow_site/storage/images/media/images/kampanje/verdensarv-kampanje/155172-1-nor-NO/Verdensarv-kampanje_responsive_09.jpg"
+                      "value": "https://i.cloudup.com/bDkmXyEmr5.png"
                     },
                     {
                       "type": "BYTES",
                       "key": "SIZE_IN_BYTES",
-                      "value": "51.4KiB"
+                      "value": "32.9KiB"
                     },
                     {
                       "type": "PERCENTAGE",
                       "key": "PERCENTAGE",
-                      "value": "84%"
+                      "value": "88%"
                     }
                   ]
                 }
@@ -469,17 +832,17 @@ This will return
                     {
                       "type": "URL",
                       "key": "URL",
-                      "value": "http://www.telemark.no/var/ezflow_site/storage/images/media/images/kampanje/hakastein-kulturminnepark/153626-1-nor-NO/Hakastein-kulturminnepark_responsive_09.jpg"
+                      "value": "https://raw.githubusercontent.com/gulpjs/artwork/master/gulp-2x.png"
                     },
                     {
                       "type": "BYTES",
                       "key": "SIZE_IN_BYTES",
-                      "value": "50KiB"
+                      "value": "12.2KiB"
                     },
                     {
                       "type": "PERCENTAGE",
                       "key": "PERCENTAGE",
-                      "value": "86%"
+                      "value": "76%"
                     }
                   ]
                 }
@@ -491,17 +854,17 @@ This will return
                     {
                       "type": "URL",
                       "key": "URL",
-                      "value": "http://www.telemark.no/var/ezflow_site/storage/images/media/images/kampanje/ung-i-telemark-2015-kampanje/155167-2-nor-NO/Ung-i-Telemark-2015-kampanje_responsive_09.jpg"
+                      "value": "https://cldup.com/wpGXm1cWwB.png"
                     },
                     {
                       "type": "BYTES",
                       "key": "SIZE_IN_BYTES",
-                      "value": "44.8KiB"
+                      "value": "11.9KiB"
                     },
                     {
                       "type": "PERCENTAGE",
                       "key": "PERCENTAGE",
-                      "value": "85%"
+                      "value": "97%"
                     }
                   ]
                 }
@@ -513,17 +876,17 @@ This will return
                     {
                       "type": "URL",
                       "key": "URL",
-                      "value": "http://www.telemark.no/var/ezflow_site/storage/images/media/images/kampanje/kampanje-elever/154723-1-nor-NO/Kampanje-elever_responsive_09.jpg"
+                      "value": "https://d21ii91i3y6o6h.cloudfront.net/gallery_images/from_proof/1647/small/1405586570/browserify-2-hexagon-sticker.png"
                     },
                     {
                       "type": "BYTES",
                       "key": "SIZE_IN_BYTES",
-                      "value": "36.4KiB"
+                      "value": "2.4KiB"
                     },
                     {
                       "type": "PERCENTAGE",
                       "key": "PERCENTAGE",
-                      "value": "84%"
+                      "value": "37%"
                     }
                   ]
                 }
@@ -534,46 +897,20 @@ This will return
       },
       "PrioritizeVisibleContent": {
         "localizedRuleName": "Prioritize visible content",
-        "ruleImpact": 2,
+        "ruleImpact": 0,
         "groups": [
           "SPEED"
         ],
         "summary": {
-          "format": "Your page requires additional network round trips to render the above-the-fold content. For best performance, reduce the amount of HTML needed to render above-the-fold content."
-        },
-        "urlBlocks": [
-          {
-            "header": {
-              "format": "The entire HTML response was not sufficient to render the above-the-fold content. This usually indicates that additional resources, loaded after HTML parsing, were required to render above-the-fold content. {{BEGIN_LINK}}Prioritize visible content{{END_LINK}} that is needed for rendering above-the-fold by including it directly in the HTML response.",
-              "args": [
-                {
-                  "type": "HYPERLINK",
-                  "key": "LINK",
-                  "value": "https://developers.google.com/speed/docs/insights/PrioritizeVisibleContent"
-                }
-              ]
-            },
-            "urls": [
-              {
-                "result": {
-                  "format": "Only about {{PERCENTAGE}} of the final above-the-fold content could be rendered with the full HTML response {{SCREENSHOT}}.",
-                  "args": [
-                    {
-                      "type": "PERCENTAGE",
-                      "key": "PERCENTAGE",
-                      "value": "20%"
-                    },
-                    {
-                      "type": "SNAPSHOT_RECT",
-                      "key": "SCREENSHOT",
-                      "value": "snapshot:1"
-                    }
-                  ]
-                }
-              }
-            ]
-          }
-        ]
+          "format": "You have the above-the-fold content properly prioritized. Learn more about {{BEGIN_LINK}}prioritizing visible content{{END_LINK}}.",
+          "args": [
+            {
+              "type": "HYPERLINK",
+              "key": "LINK",
+              "value": "https://developers.google.com/speed/docs/insights/PrioritizeVisibleContent"
+            }
+          ]
+        }
       }
     }
   },
@@ -582,8 +919,12 @@ This will return
     "minor": 15
   }
 }
-
 ```
 
+## Related
+- [gpagespeed-cli](https://github.com/zrrrzzt/gpagespeed-cli) CLI for this module
+
 ## License
-MIT
+[MIT](LICENSE)
+
+![alt text](https://robots.kebabstudios.party/gpagespeed.png "Robohash image of gpagespeed")
