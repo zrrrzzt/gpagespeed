@@ -32,7 +32,7 @@
     "url": "http://github.com/zrrrzzt/gpagespeed/issues"
   },
   "dependencies": {
-    "googleapis": "16.1.0",
+    "googleapis": "17.1.0",
     "valid-url": "1.0.9"
   },
   "devDependencies": {
