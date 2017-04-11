@@ -1,7 +1,7 @@
 {
   "name": "gpagespeed",
   "description": "Analyze a webpage with Google PageSpeed",
-  "version": "4.0.2",
+  "version": "4.0.3",
   "license": "MIT",
   "author": {
     "name": "Geir Gåsodden",
@@ -10,7 +10,7 @@
   },
   "main": "index.js",
   "engines": {
-    "node": ">=6.9.4"
+    "node": ">=6.10.2"
   },
   "scripts": {
     "test": "standard && nsp check && tap --reporter=spec test/**/*.js",
@@ -26,11 +26,12 @@
   ],
   "repository": {
     "type": "git",
-    "url": "http://github.com/zrrrzzt/gpagespeed.git"
+    "url": "https://github.com/zrrrzzt/gpagespeed.git"
   },
   "bugs": {
-    "url": "http://github.com/zrrrzzt/gpagespeed/issues"
+    "url": "https://github.com/zrrrzzt/gpagespeed/issues"
   },
+  "homepage": "https://github.com/zrrrzzt/gpagespeed",
   "dependencies": {
     "googleapis": "19.0.0",
     "valid-url": "1.0.9"
