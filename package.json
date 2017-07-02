@@ -1,7 +1,7 @@
 {
   "name": "gpagespeed",
   "description": "Analyze a webpage with Google PageSpeed",
-  "version": "4.0.3",
+  "version": "4.0.4",
   "license": "MIT",
   "author": {
     "name": "Geir Gåsodden",
@@ -10,7 +10,7 @@
   },
   "main": "index.js",
   "engines": {
-    "node": ">=6.10.2"
+    "node": ">=6.11.0"
   },
   "scripts": {
     "test": "standard && nsp check && tap --reporter=spec test/**/*.js",
