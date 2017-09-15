@@ -38,8 +38,8 @@
   },
   "devDependencies": {
     "coveralls": "2.13.1",
-    "nsp": "2.6.3",
-    "standard": "10.0.2",
+    "nsp": "2.8.0",
+    "standard": "10.0.3",
     "tap": "10.7.2"
   }
 }
