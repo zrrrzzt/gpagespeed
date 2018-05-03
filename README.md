@@ -116,4 +116,4 @@ pagespeed(options, (error, data) => {
 
 [MIT](LICENSE)
 
-![alt text](https://robots.kebabstudios.party/gpagespeed.png "Robohash image of gpagespeed")
+![Robohash image of gpagespeed](https://robots.kebabstudios.party/gpagespeed.png "Robohash image of gpagespeed")
