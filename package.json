@@ -10,15 +10,15 @@
   },
   "main": "index.js",
   "engines": {
-    "node": ">=6.11.1"
+    "node": ">=8.11.1"
   },
   "scripts": {
     "test": "standard && nsp check && tap --reporter=spec test/**/*.js",
     "test-offline": "standard && tap --reporter=spec test/**/*.js",
     "coverage": "tap test/**/*.js --coverage",
     "coveralls": "tap --cov --coverage-report=lcov test/**/*.js && cat coverage/lcov.info | coveralls",
-    "setup": "npm install",
-    "standard-fix": "standard --fix"
+    "standard-fix": "standard --fix",
+    "refresh": "rm -rf node_modules && rm package-lock.json && npm install"
   },
   "keywords": [
     "pagespeed",
@@ -31,7 +31,7 @@
   "bugs": {
     "url": "https://github.com/zrrrzzt/gpagespeed/issues"
   },
-  "homepage": "https://github.com/zrrrzzt/gpagespeed",
+  "homepage": "https://github.com/zrrrzzt/gpagespeed#readme",
   "dependencies": {
     "googleapis": "20.1.0",
     "valid-url": "1.0.9"
