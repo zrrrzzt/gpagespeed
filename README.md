@@ -7,25 +7,13 @@ Node.js module for analyzing a webpage with [Google PageSpeed Insights](https://
 
 You must acquire an API key from [Google Developers Console](https://console.developers.google.com/).
 
-Supports promises and callback interface.
-
-## Installation
-
-From npm
-
-```bash
-$ npm i gpagespeed --save
-```
-
 ## Usage
 
 Pass an object with properties.
 
 **url** and **key** are required, all other are optional.
 
-You can see a list of all alternatives on the page for [Google PageSpeed standard query parameters](https://developers.google.com/speed/docs/insights/v2/reference/pagespeedapi/runpagespeed).
-
-### Promises
+You can see a list of all alternatives on the page for [Google PageSpeed standard query parameters](https://developers.google.com/speed/docs/insights/v4/reference/pagespeedapi/runpagespeed).
 
 ```JavaScript
 const pagespeed = require('gpagespeed')
@@ -35,37 +23,17 @@ const options = {
 }
 
 pagespeed(options)
-  .then((data) => {
+  .then(data => {
     console.log(data)
   })
-  .catch((error) => {
+  .catch(error => {
     console.error(error)
   })
-```
-
-### Callback
-
-```JavaScript
-const pagespeed = require('gpagespeed')
-const options = {
-  url: 'http://url-to-check',
-  key: 'insert-your-key'
-}
-
-pagespeed(options, (error, data) => {
-  if (error) {
-    console.error(error)
-  } else {
-    console.log(data)
-  }
-})
 ```
 
 ## Alternative api
 
-In addition you can choose to use https instead of googleapis and another version of the PageSpeed api (defaults to v2).
-
-### Promises
+In addition you can choose to use https instead of googleapis and another version of the PageSpeed api (defaults to v4).
 
 ```JavaScript
 const pagespeed = require('gpagespeed')
@@ -84,26 +52,6 @@ pagespeed(options)
     console.error(error)
   })
 ```
-
-### Callback
-```JavaScript
-const pagespeed = require('gpagespeed')
-const options = {
-  url: 'http://url-to-check',
-  key: 'insert-your-key',
-  useweb: true,
-  apiversion: 'v3beta1'
-}
-
-pagespeed(options, (error, data) => {
-  if (error) {
-    console.error(error)
-  } else {
-    console.log(data)
-  }
-})
-```
-
 ## Returns
 
 [return-example.md](return-example.md)

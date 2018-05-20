@@ -1,5 +1,3 @@
-'use strict'
-
 const tap = require('tap')
 const gps = require('../../index')
 
@@ -9,10 +7,15 @@ tap.test('it requires url to exist', (test) => {
     key: true
   }
   const expectedErrorMessage = 'Missing required param: url'
-  gps(options, (error, data) => {
-    tap.equal(error.message, expectedErrorMessage, expectedErrorMessage)
-    test.done()
-  })
+
+  gps(options)
+    .then(data => {
+      console.log(data)
+    })
+    .catch((error) => {
+      tap.equal(error.message, expectedErrorMessage, expectedErrorMessage)
+      test.done()
+    })
 })
 
 tap.test('it requires url to be valid', (test) => {
@@ -21,10 +24,15 @@ tap.test('it requires url to be valid', (test) => {
     key: true
   }
   const expectedErrorMessage = 'Invalid url'
-  gps(options, (error, data) => {
-    tap.equal(error.message, expectedErrorMessage, expectedErrorMessage)
-    test.done()
-  })
+
+  gps(options)
+    .then(data => {
+      console.log(data)
+    })
+    .catch((error) => {
+      tap.equal(error.message, expectedErrorMessage, expectedErrorMessage)
+      test.done()
+    })
 })
 
 tap.test('it requires a key', (test) => {
@@ -33,8 +41,13 @@ tap.test('it requires a key', (test) => {
     key: false
   }
   const expectedErrorMessage = 'Missing required param: key'
-  gps(options, (error, data) => {
-    tap.equal(error.message, expectedErrorMessage, expectedErrorMessage)
-    test.done()
-  })
+
+  gps(options)
+    .then(data => {
+      console.log(data)
+    })
+    .catch((error) => {
+      tap.equal(error.message, expectedErrorMessage, expectedErrorMessage)
+      test.done()
+    })
 })
