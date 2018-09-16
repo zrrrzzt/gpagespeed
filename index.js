@@ -24,7 +24,7 @@ module.exports = options => {
     if (options.useweb) {
       const pagespeedUrl = `https://www.googleapis.com/pagespeedonline/${apiVersion}/runPagespeed`
       try {
-        const data = await getResults({apiUrl: pagespeedUrl, qs: options})
+        const data = await getResults({ apiUrl: pagespeedUrl, qs: options })
         return resolve(data)
       } catch (error) {
         return reject(error)
