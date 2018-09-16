@@ -63,5 +63,3 @@ pagespeed(options)
 ## License
 
 [MIT](LICENSE)
-
-![Robohash image of gpagespeed](https://robots.kebabstudios.party/gpagespeed.png "Robohash image of gpagespeed")
