@@ -1,7 +1,7 @@
 {
   "name": "gpagespeed",
   "description": "Analyze a webpage with Google PageSpeed",
-  "version": "6.0.9",
+  "version": "6.0.10",
   "license": "MIT",
   "author": {
     "name": "Geir Gåsodden",
