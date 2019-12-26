@@ -10,7 +10,7 @@
   },
   "main": "index.js",
   "engines": {
-    "node": ">=10.17.0"
+    "node": ">=10.18.0"
   },
   "scripts": {
     "test": "standard && tap --reporter=spec test/**/*.js",
