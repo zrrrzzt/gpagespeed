@@ -18,7 +18,7 @@ module.exports = async options => {
     throw error
   }
 
-  const apiVersion = options.apiversion || 'v4'
+  const apiVersion = options.apiversion || 'v5'
 
   if (options.useweb) {
     const pagespeedUrl = `https://www.googleapis.com/pagespeedonline/${apiVersion}/runPagespeed`

@@ -1,6 +1,6 @@
 const tap = require('tap')
 const pagespeed = require('../../index')
-const url = 'https://www.google.com'
+const url = 'https://www.vg.no'
 
 tap.test('return data as JSON via googleapis', (test) => {
   const options = { nokey: true, url: url }
