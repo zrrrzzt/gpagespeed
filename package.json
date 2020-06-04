@@ -33,7 +33,7 @@
   },
   "homepage": "https://github.com/zrrrzzt/gpagespeed#readme",
   "dependencies": {
-    "googleapis": "51.0.0",
+    "googleapis": "52.1.0",
     "valid-url": "1.0.9"
   },
   "devDependencies": {
