@@ -14,7 +14,7 @@ tap.test('it requires url to exist', (test) => {
     })
     .catch((error) => {
       tap.equal(error.message, expectedErrorMessage, expectedErrorMessage)
-      test.done()
+      test.end()
     })
 })
 
@@ -31,7 +31,7 @@ tap.test('it requires url to be valid', (test) => {
     })
     .catch((error) => {
       tap.equal(error.message, expectedErrorMessage, expectedErrorMessage)
-      test.done()
+      test.end()
     })
 })
 
@@ -48,6 +48,6 @@ tap.test('it requires a key', (test) => {
     })
     .catch((error) => {
       tap.equal(error.message, expectedErrorMessage, expectedErrorMessage)
-      test.done()
+      test.end()
     })
 })

@@ -7,7 +7,7 @@ tap.test('return data as JSON via googleapis', async test => {
   try {
     const data = await pagespeed(options)
     tap.equal('pagespeedonline#result', data.kind, 'data ok')
-    return test.done()
+    return test.end()
   } catch (error) {
     console.error(error)
     throw error
