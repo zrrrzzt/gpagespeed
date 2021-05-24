@@ -40,5 +40,8 @@
     "coveralls": "3.1.0",
     "standard": "16.0.3",
     "tap": "15.0.9"
+  },
+  "tap": {
+    "check-coverage": false
   }
 }
