@@ -1,6 +1,6 @@
 const tap = require('tap')
 const pagespeed = require('../../index')
-const url = 'https://github.com'
+const url = 'https://www.example.com'
 
 tap.test('return data as JSON via https', async test => {
   const options = { nokey: true, url: url, useweb: true }

@@ -37,7 +37,7 @@ tap.test('it requires url to be valid', (test) => {
 
 tap.test('it requires a key', (test) => {
   const options = {
-    url: 'https://www.npmjs.org',
+    url: 'https://www.example.com',
     key: false
   }
   const expectedErrorMessage = 'Missing required param: key'
